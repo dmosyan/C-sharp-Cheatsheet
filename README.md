@@ -2,9 +2,9 @@
 A cheat sheet to the C# language/ All-in-One / Still Editing
 ![paM5iAD](https://user-images.githubusercontent.com/33767811/60687870-77aa3c00-9ec2-11e9-8db7-a78cd60569eb.jpg)
 
-- **[String](##String)**
-- **[DateTime](##DateTime)**
-- **[Exception class](##Complete-List-Of-Exception-Class-In-C#)**
+- **[String](#String)**
+- **[DateTime](#DateTime)**
+- **[Exception class](#Complete-List-Of-Exception-Class-In-C#)**
 
 ## String
 The string is a sequence of characters surrounded with double quotes. A string class in C# is an object of type System.String. The String class in C# represents a string.
