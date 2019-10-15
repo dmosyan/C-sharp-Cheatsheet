@@ -391,3 +391,57 @@ System Exception is predefined Exception class in C# that is ready to use in pro
 |IOException|	The exception that is thrown when an I/O error occurs.|
 |PathTooLongException|	The exception that is thrown when a path or file name is longer than the system-defined maximum length.|
 |PipeException|	Thrown when an error occurs within a named pipe.|
+
+## Keywords
+
+Keywords are predefined, reserved identifiers with special meaning to the compiler. They cannot be used as
+identifiers in your program without the @ prefix. For example @if is a legal identifier but not the keyword if.
+
+#### as
+
+The as keyword is an operator similar to a cast. If a cast is not possible, using as produces null rather than
+resulting in an ```InvalidCastException```.
+Expression ```as``` type is equivalent to expression ```is``` type ? ```(type)expression : (type)null``` with the caveat that
+as is only valid on reference conversions, nullable conversions, and boxing conversions. User-defined conversions
+are not supported; a regular cast must be used instead. For the expansion above, the compiler generates code such 
+that expression will only be evaluated once and use single dynamic type check (unlike the two in the sample above).
+```as``` can be useful when expecting an argument to facilitate several types. Specifically it grants the user multiple
+options - rather than checking every possibility with is before casting, or just casting and catching exceptions. It is
+best practice to use 'as' when casting/checking an object which will cause only one unboxing penalty. Using is to check, 
+then casting will cause two unboxing penalties.
+
+If an argument is expected to be an instance of a specific type, a regular cast is preferred as its purpose is more
+clear to the reader. Because a call to as may produce null, always check the result to avoid a NullReferenceException.
+
+```csharp
+object something = "Hello";
+Console.WriteLine(something as string); //Hello
+Console.Writeline(something as Nullable<int>); //null
+Console.WriteLine(something as int?); //null
+
+//This does NOT compile:
+//destination type must be a reference type (or a nullable value type)
+Console.WriteLine(something as int);
+```
+Equivalent example without using as:
+```csharp
+Console.WriteLine(something is string ? (string)something : (string)null);
+```
+This is useful when overriding the Equals function in custom classes.
+```csharp
+class MyCustomClass
+{
+    public override bool Equals(object obj)
+    {
+        MyCustomClass customObject = obj as MyCustomClass;
+        // if it is null it may be really null
+        // or it may be of a different type
+        if (Object.ReferenceEquals(null, customObject))
+        {
+            // If it is null then it is not equal to this instance.
+            return false;
+        }
+        // Other equality controls specific to class
+    }
+}
+```
