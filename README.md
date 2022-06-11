@@ -54,7 +54,7 @@ Console.WriteLine(sb.ToString());
 You can read more about the [reasons to choose string concatenation or the StringBuilder class](https://docs.microsoft.com/en-us/dotnet/api/system.text.stringbuilder?view=netframework-4.8#StringAndSB) 
 
 
-### Common String Methods
+### Common String Functions & Mwthods
 #### Returns: 0 - true, 1 - false
 | Method | Code | Comments |
 | --- | --- | --- |
